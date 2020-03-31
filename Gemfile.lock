@@ -69,6 +69,8 @@ GEM
     rack (2.2.2)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -96,6 +98,7 @@ DEPENDENCIES
   dry-monads!
   dry-validation!
   grape!
+  rack-test!
   rspec!
   sequel!
 
