@@ -1,4 +1,6 @@
-require './app/api/cinema_api.rb'
+$:.unshift(File.expand_path('..', __FILE__))
+
+require 'app/api/ticket_booth'
 
 TicketBooth::API.compile!
 
