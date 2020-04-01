@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './app/api/ticket_booth.rb'
+require 'app/api/ticket_booth'
 
 describe TicketBooth::API do
   include Rack::Test::Methods
