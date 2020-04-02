@@ -5,7 +5,7 @@
 # TrueClass :monday
 # TrueClass :tuesday
 # TrueClass :wednesday
-# TrueClass :thuesday
+# TrueClass :thursday
 # TrueClass :friday
 # TrueClass :saturday
 # TrueClass :sunday

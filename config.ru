@@ -1,9 +1,6 @@
 $:.unshift(File.expand_path('..', __FILE__))
 
 require 'bundler'
-# require 'grape'
-# require 'pry'
-
 Bundler.require(:default, :development)
 
 require 'db/config'

@@ -1,4 +1,3 @@
-
 require 'app/models/movie'
 require 'dry/monads/all'
 
@@ -9,8 +8,8 @@ module Service
     include Dry::Monads::Do.for(:call)
 
     def call(params)
-      validated_data = yield validate(params)
-      persist(validated_data)
+      validated_model = yield validate(params)
+      persist(validated_model)
     end
 
     private
@@ -26,9 +25,9 @@ module Service
       end
     end
 
-    def persist(movie)
-      return Success(movie) if movie.save
-      Failure({ errors: movie.errors.message })
+    def persist(model)
+      return Success(model) if model.save
+      Failure({ errors: model.errors.message })
     end
   end
 end

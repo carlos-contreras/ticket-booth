@@ -10,7 +10,7 @@ Sequel.migration do
       TrueClass :monday
       TrueClass :tuesday
       TrueClass :wednesday
-      TrueClass :thuesday
+      TrueClass :thursday
       TrueClass :friday
       TrueClass :saturday
       TrueClass :sunday
@@ -26,7 +26,7 @@ Sequel.migration do
   end
 
   down do
-    drop_table(:movie)
-    drop_table(:reservation)
+    drop_table(:movies)
+    drop_table(:reservations)
   end
 end

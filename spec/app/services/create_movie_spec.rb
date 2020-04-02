@@ -11,7 +11,8 @@ describe Service::CreateMovie do
       {
         name: "Test movie",
         description: "Test Description",
-        image_url: "https://testmoviecovers/test_image.jpg"
+        image_url: "https://testmoviecovers/test_image.jpg",
+        monday: true,
       }
     end
 
