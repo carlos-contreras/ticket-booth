@@ -4,7 +4,7 @@
 # String :customer_name, null: false
 # String :customer_phone, null: false
 
-class Reservation < Sequel::Model(:reservations)
+class Reservation < Sequel::Model
   plugin :validation_helpers
 
   def validate

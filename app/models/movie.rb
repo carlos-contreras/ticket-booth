@@ -10,7 +10,11 @@
 # TrueClass :saturday
 # TrueClass :sunday
 
-class Movie < Sequel::Model(:movies)
+# require 'db/config'
+
+# Sequel::Model.db = Sequel.connect(Database.url('dev'))
+
+class Movie < Sequel::Model
   plugin :validation_helpers
 
   def validate
