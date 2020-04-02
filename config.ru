@@ -1,12 +1,15 @@
 $:.unshift(File.expand_path('..', __FILE__))
 
 require 'bundler'
-Bundler.require(:default, :test)
+# require 'grape'
+# require 'pry'
+
+Bundler.require(:default, :development)
 
 require 'db/config'
-require 'app/api/ticket_booth'
-
 Sequel::Model.db = Sequel.connect(Database.url('dev'))
+
+require 'app/api/ticket_booth'
 
 TicketBooth::API.compile!
 

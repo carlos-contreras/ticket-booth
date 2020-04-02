@@ -1,5 +1,3 @@
-require 'grape'
-require 'pry'
 require 'app/services/create_movie'
 
 module TicketBooth

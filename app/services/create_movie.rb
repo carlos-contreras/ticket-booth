@@ -5,6 +5,7 @@ require 'dry/monads/all'
 module Service
   class CreateMovie
     include Dry::Monads
+    include Dry::Monads[:try]
     include Dry::Monads::Do.for(:call)
 
     def call(params)
@@ -12,23 +13,22 @@ module Service
       persist(validated_data)
     end
 
+    private
+
     def validate(params)
-      Try(Sequel::MassAssignmentRestriction) {
-        new_model = Movie.new(params)
+      assignment = Try(Sequel::MassAssignmentRestriction) { Movie.new(params) }.to_result
+      if assignment.failure?
+        Failure({ errors: assignment.failure.message })
+      else
+        new_model = assignment.value!
         return Success(new_model) if new_model.valid?
-        Failure(new_model.errors)
-      }.to_result.bind do |result|
-        if result.failure?
-          Failure({ error: result.failure.message })
-        else
-          Success(result.success)
-        end
+        Failure({ errors: new_model.errors })
       end
     end
 
     def persist(movie)
       return Success(movie) if movie.save
-      Failure(movie.errors)
+      Failure({ errors: movie.errors.message })
     end
   end
 end

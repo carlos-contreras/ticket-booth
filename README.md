@@ -11,5 +11,5 @@ Movie tickets app
 # Steps to run the specs
 ```bash
 > bundle exec rake db:migrate\[test\]
-> rspec
+> bundle exec rspec
 ```
