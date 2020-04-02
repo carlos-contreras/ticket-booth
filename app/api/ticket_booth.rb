@@ -1,4 +1,6 @@
 require 'grape'
+require 'pry'
+require 'app/services/create_movie'
 
 module TicketBooth
   class API < Grape::API
@@ -21,10 +23,22 @@ module TicketBooth
       end
 
       desc 'Create a movie given the movie data'
+      params do
+        requires :movie, type: Hash do
+          requires :name, type: String
+          requires :description, type: String
+          requires :image_url, type: String
+        end
+      end
       post do
-        logger.info params.inspect
-        { carlos: true }
-        # Create the movie here
+        logger.info "POST /movies.json"
+        result = Service::CreateMovie.new.call(declared(params)[:movie])
+
+        if result.success?
+          result.value!.to_hash
+        else
+          result.value!
+        end
       end
     end
 
@@ -38,9 +52,14 @@ module TicketBooth
 
       desc 'Create a resvation for a movie given the day of the week and the movie'
       post do
-        logger.info params.inspect
-        { carlos: true }
-        # Create the reservation here
+        logger.info "POST /reservation.json"
+        result = Service::CreateReservation.new.call(declared(params)[:reservation])
+
+        if result.success?
+          result.value!.to_hash
+        else
+          result.value!
+        end
       end
     end
   end

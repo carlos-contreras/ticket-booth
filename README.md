@@ -6,6 +6,9 @@ Movie tickets app
 > bundle install
 > be rake db:migrate
 > rackup
+```
 
-be rake db:migrate\[test\]
+# Steps to run the specs
+```bash
+> be rake db:migrate\[test\]
 ```

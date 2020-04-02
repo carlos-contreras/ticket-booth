@@ -5,11 +5,11 @@ source 'https://rubygems.org' do
   gem 'sequel' # ORM
   gem 'sqlite3' # DB
   gem 'rake' # Automated tasks
-  gem 'dry-monads' # Service Ruby Objects
+  gem 'dry-monads' # Service Ruby Objects "Railway Oriented Programming"
 
-  group :development do
+  # group :development do
     gem 'pry'
-  end
+  # end
 
   group :test do
     gem 'rspec'
