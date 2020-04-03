@@ -31,7 +31,6 @@ module Service
       if assignment.failure?
         Failure({ errors: assignment.failure.message })
       else
-        assignment = Try(SQLite3::ConstraintException) { Reservation.new(params) }.to_result
         new_model = assignment.value!
         return Success(new_model) if new_model.valid?
         Failure({ errors: new_model.errors })

@@ -4,9 +4,9 @@ require "app/models/reservation"
 describe Reservation do
   before do
     Movie.create(
-      name: "Arrival",
-      description: "Louise Banks, a linguistics expert, along with her team, must interpret the language of aliens who've come to earth in a mysterious spaceship.",
-      image_url: "https://en.wikipedia.org/wiki/Arrival_(film)#/media/File:Arrival,_Movie_Poster.jpg"
+      title: "Test Movie",
+      description: "Test description",
+      image_url: "http://test-movie.com/poster.jpg"
     )
   end
 

@@ -1,11 +1,15 @@
 require 'app/services/create_movie'
+require 'app/services/list_movies'
 require 'app/services/create_reservation'
+require 'app/services/list_reservations'
 
 module TicketBooth
   class API < Grape::API
     version 'v1', using: :header, vendor: 'cinema'
     format :json
     prefix :api
+
+    DATE_FORMAT_REGEX = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.freeze
 
     helpers do
       def logger
@@ -15,16 +19,25 @@ module TicketBooth
 
     resource '/movies' do
       desc 'List movies given a day of the week'
+      params do
+        requires :day, type: String, values: Service::ListMovies::VALID_DAYS
+      end
       get do
         logger.info params.inspect
-        { carlos: true }
-        # List movies here
+
+        result = Service::ListMovies.new.call(declared(params))
+
+        if result.success?
+          result.value!.map(&:to_hash)
+        else
+          result.failure
+        end
       end
 
       desc 'Create a movie given the movie data'
       params do
         requires :movie, type: Hash do
-          requires :name, type: String
+          requires :title, type: String
           requires :description, type: String
           requires :image_url, type: String
           optional :monday, type: Boolean, default: false
@@ -50,17 +63,27 @@ module TicketBooth
 
     resource '/reservations' do
       desc 'List reservations given a date range'
+      params do
+        requires :start_date, type: String, regexp: DATE_FORMAT_REGEX
+        requires :end_date, type: String, regexp: DATE_FORMAT_REGEX
+      end
       get do
         logger.info params.inspect
-        { carlos: true }
-        # List reservations here
+
+        result = Service::ListReservations.new.call(declared(params))
+
+        if result.success?
+          result.value!.map(&:to_hash)
+        else
+          result.failure
+        end
       end
 
       desc 'Create a resvation for a movie given the day of the week and the movie'
       params do
         requires :reservation, type: Hash do
           requires :movie_id, type: Integer
-          requires :date, type: String, regexp: /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
+          requires :date, type: String, regexp: DATE_FORMAT_REGEX
           requires :customer_name, type: String
           requires :customer_phone, type: String
         end

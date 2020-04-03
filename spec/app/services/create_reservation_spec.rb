@@ -7,7 +7,7 @@ describe Service::CreateReservation do
   end
   let(:first_movie) do
     Movie.create(
-      name: "Test Movie",
+      title: "Test Movie",
       description: "Test description.",
       image_url: "http://test-movie.com/poster.jpg",
       friday: true,
@@ -99,12 +99,10 @@ describe Service::CreateReservation do
 
     before do
       Reservation.create(
-        {
-          movie_id: first_movie.id,
-          date: '2020-04-03',
-          customer_name: "Jhon Doe",
-          customer_phone: "555 555 5555"
-        }
+        movie_id: first_movie.id,
+        date: '2020-04-03',
+        customer_name: "Jhon Doe",
+        customer_phone: "555 555 5555"
       )
     end
 

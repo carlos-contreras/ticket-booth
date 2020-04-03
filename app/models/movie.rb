@@ -1,5 +1,5 @@
 # primary_key :id
-# String :name, null: false
+# String :title, null: false
 # String :description, null: false
 # String :image_url, null: false
 # TrueClass :monday
@@ -19,6 +19,6 @@ class Movie < Sequel::Model
 
   def validate
     super
-    validates_presence %i[name image_url description]
+    validates_presence %i[title image_url description]
   end
 end
