@@ -2,6 +2,13 @@
 require_relative 'db/config'
 
 namespace 'db' do
+  desc 'Create database'
+  task :create, :mode do |t, args|
+    cmd = "createdb #{ENV['DB_NAME']}-#{mode(args[:mode])}"
+    puts cmd
+    puts `#{cmd}`
+  end
+
   desc "Run database migrations where mode is: #{Database::DB_MODES.join(', ')}"
   task :migrate, :mode do |t, args|
     cmd = "sequel -m db/migrations #{Database.url(mode(args[:mode]))}"
@@ -23,7 +30,7 @@ end
 def mode(arg)
   mode = arg
   if mode.nil? || mode.strip.empty?
-    mode = 'dev'
+    mode = ENV['RACK_ENV']
   end
   mode.to_sym
 end

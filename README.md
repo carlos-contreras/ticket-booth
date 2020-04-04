@@ -1,17 +1,28 @@
 # ticket-booth
 Movie tickets app
 
+# Demo can be found at
+https://ticket-booth-cc.herokuapp.com/
+
 # Steps to setup the app
+- Dependencies: 
+- [ ] postgres database
+- [ ] heroku cli
+- [ ] Create a `.env` file based on the `.env-example`
+
+Commands:
+
 ```bash
 > bundle install
-> bundle exec rake db:migrate
-> rackup
+> bundle exec dotenv rake db:create
+> bundle exec dotenv rake db:migrate
+> heroku local # run the app
 ```
 
 # Steps to run the specs
 ```bash
-> bundle exec rake db:migrate\[test\]
-> bundle exec rspec
+> bundle exec dotenv rake db:migrate\[test\]
+> bundle exec dotenv rspec
 ```
 
 # API DOCS

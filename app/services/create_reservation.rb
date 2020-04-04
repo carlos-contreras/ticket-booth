@@ -1,5 +1,6 @@
-require 'app/models/reservation'
 require 'dry/monads/all'
+require_relative '../models/movie'
+require_relative '../models/reservation'
 
 module Service
   class CreateReservation
