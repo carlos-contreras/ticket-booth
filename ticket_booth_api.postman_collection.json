@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"movie\": {\n\t\t\"name\": \"The Arrival\",\n\t\t\"image_url\": \"test\",\n\t\t\"description\": \"Test description\"\n\t\t\"monday\": true,\n\t\t\"wednesday\": true,\n\t}\n}",
+					"raw": "{\n\t\"movie\": {\n\t\t\"title\": \"The Movie\",\n\t\t\"image_url\": \"test\",\n\t\t\"description\": \"wow!!\",\n\t\t\"tuesday\": true,\n\t\t\"thursday\": true,\n\t\t\"saturday\": true\n\t}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +41,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"reservation\": {\n\t\t\"movie_id\": 1,\n\t\t\"date\": \"2020-04-05\",\n\t\t\"customer_name\": \"Carlos Contreras\",\n\t\t\"customer_phone\": \"555 555 5555\"\n\t}\n}",
+					"raw": "{\n\t\"reservation\": {\n\t\t\"movie_id\": 1,\n\t\t\"date\": \"2020-04-02\",\n\t\t\"customer_name\": \"Carlos Contreras\",\n\t\t\"customer_phone\": \"555 555 5555\"\n\t}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -69,7 +69,22 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:9292/api/movies.json?day=saturday",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9292",
+					"path": [
+						"api",
+						"movies.json"
+					],
+					"query": [
+						{
+							"key": "day",
+							"value": "saturday"
+						}
+					]
 				}
 			},
 			"response": []
@@ -80,7 +95,26 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:9292/api/reservations?start_date=2020-04-01&end_date=2020-04-20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9292",
+					"path": [
+						"api",
+						"reservations"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2020-04-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-04-20"
+						}
+					]
 				}
 			},
 			"response": []
