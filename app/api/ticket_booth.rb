@@ -1,7 +1,10 @@
-require 'app/services/create_movie'
-require 'app/services/list_movies'
-require 'app/services/create_reservation'
-require 'app/services/list_reservations'
+# require 'bundler'
+# Bundler.require(:default, ENV['RACK_ENV'].to_sym)
+require 'grape'
+require './app/services/create_movie'
+require './app/services/list_movies'
+require './app/services/create_reservation'
+require './app/services/list_reservations'
 
 module TicketBooth
   class API < Grape::API
@@ -50,7 +53,8 @@ module TicketBooth
         end
       end
       post do
-        logger.info "POST /movies.json"
+        logger.info params.inspect
+
         result = Service::CreateMovie.new.call(declared(params)[:movie])
 
         if result.success?
@@ -89,7 +93,7 @@ module TicketBooth
         end
       end
       post do
-        logger.info "POST /reservations.json"
+        logger.info params.inspect
         result = Service::CreateReservation.new.call(declared(params)[:reservation])
 
         if result.success?

@@ -2,14 +2,11 @@ ruby '~> 2.6'
 
 source 'https://rubygems.org' do
   gem 'grape' # Web API
+  # gem 'sqlite3' # DB
+  gem 'pg' # DB
   gem 'sequel' # ORM
-  gem 'sqlite3' # DB
   gem 'rake' # Automated tasks
   gem 'dry-monads' # Service Ruby Objects "Railway Oriented Programming"
-
-  # group :development do
-    gem 'pry'
-  # end
 
   group :test do
     gem 'rspec'
@@ -18,5 +15,7 @@ source 'https://rubygems.org' do
 
   group :development, :test do
     gem 'rubocop', require: false
+    gem 'pry'
+    gem 'dotenv'
   end
 end

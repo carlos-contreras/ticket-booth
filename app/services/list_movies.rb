@@ -1,5 +1,5 @@
-require 'app/models/movie'
 require 'dry/monads/all'
+require_relative '../models/movie'
 
 module Service
   class ListMovies

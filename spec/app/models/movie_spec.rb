@@ -15,6 +15,6 @@ describe Movie do
   end
 
   it 'finds created records' do
-    expect { subject.save }.to change { described_class.first&.id }.from(nil).to(1)
+    expect { subject.save }.to change { described_class.first&.id }.from(nil).to(an_instance_of(Fixnum))
   end
 end

@@ -1,5 +1,3 @@
-Sequel.sqlite('ticket_booth.db')
-
 Sequel.migration do
   up do
     create_table(:movies) do
@@ -26,7 +24,7 @@ Sequel.migration do
   end
 
   down do
-    drop_table(:movies)
     drop_table(:reservations)
+    drop_table(:movies)
   end
 end
